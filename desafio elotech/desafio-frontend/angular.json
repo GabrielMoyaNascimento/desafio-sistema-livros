@@ -64,7 +64,8 @@
               "buildTarget": "desafio-frontend:build:production"
             },
             "development": {
-              "buildTarget": "desafio-frontend:build:development"
+              "buildTarget": "desafio-frontend:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
