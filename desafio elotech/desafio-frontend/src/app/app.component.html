@@ -1,0 +1,42 @@
+<!-- Menu de Navegação Principal (Bootstrap) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Gestão de Biblioteca</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <!-- Link para a lista de usuários -->
+          <a class="nav-link" routerLink="/usuarios">Usuários</a>
+        </li>
+        <li class="nav-item">
+          <!-- Link para a lista de livros -->
+          <a class="nav-link" routerLink="/livros">Livros</a>
+        </li>
+        <li class="nav-item">
+          <!-- Link para o formulário de empréstimo -->
+          <a class="nav-link" routerLink="/emprestimos">Novo Empréstimo</a>
+        </li>
+        <li class="nav-item">
+          <!-- Link para as recomendações -->
+          <a class="nav-link" routerLink="/recomendacoes">Recomendações</a>
+        </li>
+      </ul>
+      <!--
+        Eu removi o botão "Buscar (Google)" porque você
+        indicou que não precisava do BookSearchComponent.
+      -->
+    </div>
+  </div>
+</nav>
+
+<!-- Conteúdo Principal -->
+<main class="container mt-4">
+  <!--
+    É AQUI QUE AS SUAS PÁGINAS (COMPONENTES) SERÃO RENDERIZADAS
+    com base no seu app-routing.module.ts
+  -->
+  <router-outlet></router-outlet>
+</main>
