@@ -40,7 +40,6 @@ public class Livro {
     private String categoria;
 
     @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Emprestimo> emprestimos;
-
+    private List<Emprestimo> emprestimos = new java.util.ArrayList<>();
 
 }

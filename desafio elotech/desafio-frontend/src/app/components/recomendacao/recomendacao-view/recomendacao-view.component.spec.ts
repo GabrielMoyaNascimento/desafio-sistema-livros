@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecomendacaoView } from './recomendacao-view.component';
+import { RecomendacaoViewComponent } from './recomendacao-view.component';
 
-describe('RecomendacaoView', () => {
-  let component: RecomendacaoView;
-  let fixture: ComponentFixture<RecomendacaoView>;
+describe('RecomendacaoViewComponent', () => {
+  let component: RecomendacaoViewComponent;
+  let fixture: ComponentFixture<RecomendacaoViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecomendacaoView]
+      imports: [RecomendacaoViewComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RecomendacaoView);
+    fixture = TestBed.createComponent(RecomendacaoViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

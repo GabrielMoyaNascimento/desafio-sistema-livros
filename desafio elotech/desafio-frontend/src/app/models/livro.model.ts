@@ -5,4 +5,6 @@ export interface Livro {
   isbn: string;
   dataPublicacao: string;
   categoria: string;
+  status: 'DISPONÍVEL' | 'EMPRESTADO';
+  activeEmprestimoId: number | null;
 }

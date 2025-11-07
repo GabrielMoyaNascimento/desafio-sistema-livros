@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Usuario } from "../../../models/usuario.model";
-import { UsuarioService } from "../../../services/services/usuario";
+import { UsuarioService } from "../../../services/usuario";
 
 @Component({
   standalone: false,
@@ -27,7 +27,6 @@ export class UsuarioListComponent implements OnInit {
     if (confirm('Tem certeza que deseja excluir este usuário?')) {
       this.usuarioService.deleteUsuario(id).subscribe({
         next: () => {
-          alert('Usuário excluído com sucesso!');
           this.loadUsuarios();
         },
         error: (err) => {

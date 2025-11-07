@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {Usuario} from '../../../models/usuario.model';
 import {Livro} from '../../../models/livro.model';
-import {EmprestimoService} from '../../../services/services/emprestimo';
-import {UsuarioService} from '../../../services/services/usuario';
-import {LivroService} from '../../../services/services/livro';
+import {EmprestimoService} from '../../../services/emprestimo';
+import {UsuarioService} from '../../../services/usuario';
+import {LivroService} from '../../../services/livro';
 
 
 @Component({
@@ -44,7 +45,9 @@ export class EmprestimoFormComponent implements OnInit {
 
   loadDropdowns(): void {
     this.usuarios$ = this.usuarioService.getUsuarios();
-    this.livros$ = this.livroService.getLivros();
+    this.livros$ = this.livroService.getLivros().pipe(
+      map(livros => livros.filter(livro => livro.status === 'DISPONÍVEL'))
+    );
   }
 
   onSubmit(): void {
@@ -57,7 +60,6 @@ export class EmprestimoFormComponent implements OnInit {
 
     this.emprestimoService.createEmprestimo(request).subscribe({
       next: () => {
-        alert('Empréstimo realizado com sucesso!');
         this.router.navigate(['/livros']);
       },
       error: (err) => {

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Usuario} from '../../../models/usuario.model';
 import {Livro} from '../../../models/livro.model';
-import {UsuarioService} from '../../../services/services/usuario';
-import {RecomendacaoService} from '../../../services/services/recomendacao';
+import {UsuarioService} from '../../../services/usuario';
+import {RecomendacaoService} from '../../../services/recomendacao';
 
 
 @Component({

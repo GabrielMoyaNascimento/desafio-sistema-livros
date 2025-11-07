@@ -11,6 +11,7 @@ import {LivroListComponent} from './components/livro/livro-list/livro-list.compo
 import {LivroFormComponent} from './components/livro/livro-form/livro-form.component';
 import {EmprestimoFormComponent} from './components/emprestimo/emprestimo-form/emprestimo-form.component';
 import {RecomendacaoViewComponent} from './components/recomendacao/recomendacao-view/recomendacao-view.component';
+import {AsyncPipe, CommonModule, DatePipe } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -24,12 +25,13 @@ import {RecomendacaoViewComponent} from './components/recomendacao/recomendacao-
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

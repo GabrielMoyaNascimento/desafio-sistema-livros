@@ -1,1 +1,41 @@
-<p>usuario-form works!</p>
+<div class="container mt-4">
+  <h2>{{ formTitle }}</h2>
+
+  <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" id="nome" class="form-control" formControlName="nome">
+      <div *ngIf="usuarioForm?.get('nome')?.invalid && usuarioForm?.get('nome')?.touched" class="text-danger">
+        Nome é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <div *ngIf="usuarioForm?.get('email')?.invalid && usuarioForm?.get('email')?.touched" class="text-danger">
+        Email é obrigatório e deve ser válido.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="telefone" class="form-label">Telefone</label>
+      <input type="tel" id="telefone" class="form-control" formControlName="telefone">
+      <div *ngIf="usuarioForm?.get('telefone')?.invalid && usuarioForm?.get('telefone')?.touched" class="text-danger">
+        Telefone é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="dataCadastro" class="form-label">Data de Cadastro</label>
+      <input type="date" id="dataCadastro" class="form-control" formControlName="dataCadastro">
+      <div *ngIf="usuarioForm?.get('dataCadastro')?.invalid && usuarioForm?.get('dataCadastro')?.touched" class="text-danger">
+        Data é obrigatória.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="usuarioForm.invalid">Salvar</button>
+    <a routerLink="/usuarios" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>

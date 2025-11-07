@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {LivroService} from '../../../services/services/livro';
+import {LivroService} from '../../../services/livro';
 
 
 @Component({
@@ -67,7 +67,6 @@ export class LivroFormComponent implements OnInit {
 
     request.subscribe({
       next: () => {
-        alert(`Livro ${this.isEditMode ? 'atualizado' : 'criado'} com sucesso!`);
         this.router.navigate(['/livros']);
       },
       error: (err) => alert('Erro ao salvar: ' + err.error.message)

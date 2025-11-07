@@ -1,6 +1,3 @@
-import { Livro } from './livro.model';
-import { Usuario } from './usuario.model';
-
 export enum StatusEmprestimo {
   ATIVO = 'ATIVO',
   DEVOLVIDO = 'DEVOLVIDO'
@@ -27,9 +24,8 @@ export interface Emprestimo {
   livro: LivroSimplificado;
 }
 
-
 export interface EmprestimoCreateRequest {
   usuarioId: number;
   livroId: number;
-  dataDevolucaoPrevista: string; // ex: "2025-11-19"
+  dataDevolucaoPrevista: string;
 }

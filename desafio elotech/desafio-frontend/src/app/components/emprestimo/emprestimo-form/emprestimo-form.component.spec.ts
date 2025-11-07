@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmprestimoForm } from './emprestimo-form.component';
+import { EmprestimoFormComponent } from './emprestimo-form.component';
 
-describe('EmprestimoForm', () => {
-  let component: EmprestimoForm;
-  let fixture: ComponentFixture<EmprestimoForm>;
+describe('EmprestimoFormComponent', () => {
+  let component: EmprestimoFormComponent;
+  let fixture: ComponentFixture<EmprestimoFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmprestimoForm]
+      imports: [EmprestimoFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmprestimoForm);
+    fixture = TestBed.createComponent(EmprestimoFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,1 +1,55 @@
-<p>livro-list works!</p>
+<div class="container mt-4">
+  <h2>Lista de Livros</h2>
+  <a routerLink="/livros/novo" class="btn btn-primary mb-3">Novo Livro</a>
+  <!-- Removido o botão do Google Books -->
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>ISBN</th>
+      <th>Categoria</th>
+      <th>Status</th> <!-- Coluna de Status -->
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let livro of livros$ | async">
+      <td>{{ livro.id }}</td>
+      <td>{{ livro.titulo }}</td>
+      <td>{{ livro.autor }}</td>
+      <td>{{ livro.isbn }}</td>
+      <td>{{ livro.categoria }}</td>
+
+      <!-- Mostrar o Status (Disponível/Emprestado) -->
+      <td>
+          <span class="badge"
+                [class.text-bg-success]="livro.status === 'DISPONÍVEL'"
+                [class.text-bg-warning]="livro.status === 'EMPRESTADO'">
+            {{ livro.status }}
+          </span>
+      </td>
+
+      <td>
+        <div *ngIf="livro.status === 'DISPONÍVEL'">
+          <a [routerLink]="['/livros/editar', livro.id]" class="btn btn-sm btn-warning me-2">Editar</a>
+          <button (click)="deleteLivro(livro.id)" class="btn btn-sm btn-danger">Excluir</button>
+        </div>
+
+        <div *ngIf="livro.status === 'EMPRESTADO'">
+          <button (click)="devolverLivro(livro.activeEmprestimoId)"
+                  class="btn btn-sm btn-info"
+                  [disabled]="!livro.activeEmprestimoId">
+            Devolver
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="!(livros$ | async)?.length">
+      <td colspan="7">Nenhum livro encontrado.</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

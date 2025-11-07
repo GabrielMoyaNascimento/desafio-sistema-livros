@@ -1,1 +1,119 @@
-/* You can add global styles to this file, and also import other style files */
+/* ---
+  ESTILOS GLOBAIS PARA O DESAFIO TÉCNICO
+  Isto irá modernizar o visual do Bootstrap.
+--- */
+
+/* 1. Importar uma fonte moderna (Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* 2. Definir variáveis de cor (opcional, mas bom para consistência) */
+:root {
+  --cor-primaria: #0d6efd; /* Azul padrão do Bootstrap 5 */
+  --cor-fundo: #f8f9fa;     /* Um cinza muito claro */
+  --cor-texto: #212529;
+  --cor-borda: #dee2e6;
+  --cor-branco: #ffffff;
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --sombra-media: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 3. Estilos de base (Body) */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Navbar (Menu Superior) */
+/* O seu app.component.html já usa .navbar-dark .bg-dark, vamos melhorá-lo */
+.navbar.bg-dark {
+  background-color: #212529 !important; /* Um preto/cinza mais escuro */
+  box-shadow: var(--sombra-media);
+  border-bottom: 1px solid #333;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* 5. Títulos das Páginas (h2) */
+h2 {
+  font-weight: 700;
+  margin-bottom: 1.5rem; /* Mais espaço abaixo do título */
+  color: #343a40;
+}
+
+/* 6. Botões (O impacto visual mais importante!) */
+.btn {
+  border-radius: 8px; /* Cantos arredondados */
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sombra-suave);
+}
+
+.btn:hover {
+  /* Efeito de "levantar" ao passar o rato */
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+}
+
+.btn-primary {
+  background-color: var(--cor-primaria);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+/* 7. Tabelas */
+.table {
+  background-color: var(--cor-branco);
+  border-radius: 12px; /* Cantos arredondados para a tabela */
+  box-shadow: var(--sombra-suave);
+  overflow: hidden; /* Garante que os cantos arredondados funcionam */
+  border: 1px solid var(--cor-borda);
+}
+
+.table thead {
+  background-color: #f1f3f5; /* Um cabeçalho de tabela ligeiramente cinza */
+}
+
+.table thead th {
+  font-weight: 700;
+  color: #495057;
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+/* 8. Formulários (Inputs, Selects) */
+.form-control,
+.form-select {
+  border-radius: 8px; /* Cantos arredondados */
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cor-borda);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--cor-primaria);
+  /* Sombra de foco personalizada (remove o brilho azul padrão) */
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+  outline: none;
+}
+
+/* 9. Estilo de "Cartão" para os formulários */
+/* Os seus HTMLs de formulário começam com <div class="container mt-4"> */
+/* Vamos adicionar um estilo de cartão a todos os formulários */
+form {
+  background-color: var(--cor-branco);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid var(--cor-borda);
+}

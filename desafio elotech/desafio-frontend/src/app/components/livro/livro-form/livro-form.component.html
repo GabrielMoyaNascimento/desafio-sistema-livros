@@ -1,1 +1,49 @@
-<p>livro-form works!</p>
+<div class="container mt-4">
+  <h2>{{ formTitle }}</h2>
+
+  <form [formGroup]="livroForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título</label>
+      <input type="text" id="titulo" class="form-control" formControlName="titulo">
+      <div *ngIf="livroForm?.get('titulo')?.invalid && livroForm?.get('titulo')?.touched" class="text-danger">
+        Título é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="autor" class="form-label">Autor</label>
+      <input type="text" id="autor" class="form-control" formControlName="autor">
+      <div *ngIf="livroForm?.get('autor')?.invalid && livroForm?.get('autor')?.touched" class="text-danger">
+        Autor é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="isbn" class="form-label">ISBN</label>
+      <input type="text" id="isbn" class="form-control" formControlName="isbn">
+      <div *ngIf="livroForm?.get('isbn')?.invalid && livroForm?.get('isbn')?.touched" class="text-danger">
+        ISBN é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="categoria" class="form-label">Categoria</label>
+      <input type="text" id="categoria" class="form-control" formControlName="categoria">
+      <div *ngIf="livroForm?.get('categoria')?.invalid && livroForm?.get('categoria')?.touched" class="text-danger">
+        Categoria é obrigatória.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="dataPublicacao" class="form-label">Data de Publicação</label>
+      <input type="date" id="dataPublicacao" class="form-control" formControlName="dataPublicacao">
+      <div *ngIf="livroForm?.get('dataPublicacao')?.invalid && livroForm?.get('dataPublicacao')?.touched" class="text-danger">
+        Data é obrigatória.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="livroForm.invalid">Salvar</button>
+    <a routerLink="/livros" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>

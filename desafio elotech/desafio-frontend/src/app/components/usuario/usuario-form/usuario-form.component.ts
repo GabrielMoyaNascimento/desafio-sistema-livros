@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {UsuarioService} from '../../../services/services/usuario';
+import {UsuarioService} from '../../../services/usuario';
 
 
 @Component({
@@ -63,7 +63,6 @@ export class UsuarioFormComponent implements OnInit {
     if (this.isEditMode) {
       this.usuarioService.updateUsuario(this.usuarioId!, formValue).subscribe({
         next: () => {
-          alert('Usuário atualizado com sucesso!');
           this.router.navigate(['/usuarios']);
         },
         error: (err) => alert('Erro ao atualizar: ' + err.error.message)
@@ -71,7 +70,6 @@ export class UsuarioFormComponent implements OnInit {
     } else {
       this.usuarioService.createUsuario(formValue).subscribe({
         next: () => {
-          alert('Usuário criado com sucesso!');
           this.router.navigate(['/usuarios']);
         },
         error: (err) => alert('Erro ao criar: ' + err.error.message)

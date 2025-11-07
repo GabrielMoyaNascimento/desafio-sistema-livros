@@ -3,6 +3,7 @@ package com.desafio.desafio.service;
 
 import com.desafio.desafio.exception.ResourceNotFoundException;
 import com.desafio.desafio.model.Emprestimo;
+import com.desafio.desafio.model.StatusEmprestimo;
 import com.desafio.desafio.model.Livro;
 import com.desafio.desafio.model.Usuario;
 import com.desafio.desafio.repository.EmprestimoRepository;
@@ -32,10 +33,6 @@ public class RecomendacaoService {
 
         List<Emprestimo> emprestimosDoUsuario = emprestimoRepository.findByUsuario(usuario);
 
-        if (emprestimosDoUsuario.isEmpty()) {
-            return List.of(); // Sem histórico, sem recomendações
-        }
-
         List<Long> idsLivrosJaEmprestados = emprestimosDoUsuario.stream()
                 .map(emprestimo -> emprestimo.getLivro().getId())
                 .toList();
@@ -44,10 +41,28 @@ public class RecomendacaoService {
                 .map(emprestimo -> emprestimo.getLivro().getCategoria())
                 .collect(Collectors.toSet());
 
+        if (categoriasFavoritas.isEmpty()) {
+            categoriasFavoritas = livroRepository.findAllCategorias();
+        }
+
+        final boolean temHistorico = !idsLivrosJaEmprestados.isEmpty();
+
         return categoriasFavoritas.stream()
-                .flatMap(categoria ->
-                        livroRepository.findByCategoriaAndIdNotIn(categoria, idsLivrosJaEmprestados).stream()
-                )
+                .flatMap(categoria -> {
+
+                    List<Livro> livrosDaCategoria;
+                    if (temHistorico) {
+                        livrosDaCategoria = livroRepository.findByCategoriaAndIdNotInWithEmprestimos(categoria, idsLivrosJaEmprestados);
+                    } else {
+                        livrosDaCategoria = livroRepository.findByCategoriaWithEmprestimos(categoria);
+                    }
+
+                    return livrosDaCategoria.stream()
+                            .filter(livro ->
+                                    livro.getEmprestimos().stream()
+                                            .noneMatch(e -> e.getStatus() == StatusEmprestimo.ATIVO)
+                            );
+                })
                 .distinct()
                 .collect(Collectors.toList());
     }

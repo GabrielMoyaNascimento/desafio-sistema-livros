@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LivroForm } from './livro-form.component';
+import { LivroFormComponent } from './livro-form.component';
 
-describe('LivroForm', () => {
-  let component: LivroForm;
-  let fixture: ComponentFixture<LivroForm>;
+describe('LivroFormComponent', () => {
+  let component: LivroFormComponent;
+  let fixture: ComponentFixture<LivroFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LivroForm]
+      imports: [LivroFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LivroForm);
+    fixture = TestBed.createComponent(LivroFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

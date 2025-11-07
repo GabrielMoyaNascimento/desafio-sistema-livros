@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public record EmprestimoResponseDTO(
         Long id,
         LocalDate dataEmprestimo,
-        LocalDate dataDevolucao, // Esta será a data prevista (se ATIVO) ou real (se DEVOLVIDO)
+        LocalDate dataDevolucao,
         StatusEmprestimo status,
         UsuarioSimplificadoDTO usuario,
         LivroSimplificadoDTO livro

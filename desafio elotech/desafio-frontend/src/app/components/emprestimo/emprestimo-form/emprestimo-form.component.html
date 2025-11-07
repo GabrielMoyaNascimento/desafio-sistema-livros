@@ -1,1 +1,42 @@
-<p>emprestimo-form works!</p>
+<div class="container mt-4">
+  <h2>Novo Empréstimo</h2>
+
+  <form [formGroup]="emprestimoForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="usuarioId" class="form-label">Usuário</label>
+      <select id="usuarioId" class="form-select" formControlName="usuarioId">
+        <option [ngValue]="null" disabled>Selecione um usuário...</option>
+        <option *ngFor="let usuario of usuarios$ | async" [value]="usuario.id">
+          {{ usuario.nome }} ({{ usuario.email }})
+        </option>
+      </select>
+      <div *ngIf="emprestimoForm?.get('usuarioId')?.invalid && emprestimoForm?.get('usuarioId')?.touched" class="text-danger">
+        Usuário é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="livroId" class="form-label">Livro</label>
+      <select id="livroId" class="form-select" formControlName="livroId">
+        <option [ngValue]="null" disabled>Selecione um livro...</option>
+        <option *ngFor="let livro of livros$ | async" [value]="livro.id">
+          {{ livro.titulo }} ({{ livro.autor }})
+        </option>
+      </select>
+      <div *ngIf="emprestimoForm?.get('livroId')?.invalid && emprestimoForm?.get('livroId')?.touched" class="text-danger">
+        Livro é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="dataDevolucaoPrevista" class="form-label">Data Prevista de Devolução</label>
+      <input type="date" id="dataDevolucaoPrevista" class="form-control" formControlName="dataDevolucaoPrevista">
+      <div *ngIf="emprestimoForm?.get('dataDevolucaoPrevista')?.invalid && emprestimoForm?.get('dataDevolucaoPrevista')?.touched" class="text-danger">
+        Data é obrigatória.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="emprestimoForm.invalid">Realizar Empréstimo</button>
+  </form>
+</div>

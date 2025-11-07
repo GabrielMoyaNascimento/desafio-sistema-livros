@@ -1,1 +1,50 @@
-<p>recomendacao-view works!</p>
+<div class="container mt-4">
+  <h2>Recomendações de Livros</h2>
+
+  <div class="mb-3">
+    <label for="usuarioSelect" class="form-label">Selecione um Utilizador</label>
+    <select id="usuarioSelect"
+            class="form-select"
+            [(ngModel)]="selectedUserId"
+            (ngModelChange)="buscarRecomendacoes()">
+
+      <option [ngValue]="null" disabled>Selecione...</option>
+      <option *ngFor="let usuario of usuarios$ | async" [value]="usuario.id">
+        {{ usuario.nome }}
+      </option>
+    </select>
+  </div>
+
+  <hr>
+
+  <h4>Livros Recomendados:</h4>
+
+  <div *ngIf="isLoading" class="alert alert-info">A buscar...</div>
+
+  <div *ngIf="recomendacoes$ | async as lista; else semBusca">
+
+    <div *ngIf="lista.length > 0; else semResultados">
+      <ul class="list-group">
+        <li *ngFor="let livro of lista" class="list-group-item">
+          <strong>{{ livro.titulo }}</strong> ({{ livro.autor }})
+          <br>
+          <small>Categoria: {{ livro.categoria }}</small>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <ng-template #semBusca>
+    <div *ngIf="!isLoading" class="alert alert-secondary">
+      Selecione um utilizador para ver as recomendações.
+    </div>
+  </ng-template>
+
+  <ng-template #semResultados>
+    <div *ngIf="!isLoading && selectedUserId" class="alert alert-warning">
+      Nenhuma recomendação encontrada para este utilizador.
+    </div>
+  </ng-template>
+
+</div>
