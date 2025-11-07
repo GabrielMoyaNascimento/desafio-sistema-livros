@@ -18,13 +18,7 @@ public record LivroResponseDTO(
         String status,
         Long activeEmprestimoId
 ) {
-    /**
-     * Método de fábrica para converter a entidade JPA (Livro)
-     * neste DTO (LivroResponseDTO).
-     *
-     * @param livro A entidade vinda do banco de dados.
-     * @return O DTO preenchido para resposta.
-     */
+
     public static LivroResponseDTO fromEntity(Livro livro) {
         Optional<Emprestimo> emprestimoAtivoOpt = livro.getEmprestimos().stream()
                 .filter(e -> e.getStatus() == StatusEmprestimo.ATIVO)

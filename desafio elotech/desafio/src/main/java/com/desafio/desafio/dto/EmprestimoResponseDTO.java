@@ -20,13 +20,7 @@ public record EmprestimoResponseDTO(
         UsuarioSimplificadoDTO usuario,
         LivroSimplificadoDTO livro
 ) {
-    /**
-     * Método de fábrica para converter a entidade JPA (Emprestimo)
-     * neste DTO (EmprestimoResponseDTO).
-     *
-     * @param emprestimo A entidade vinda do banco de dados.
-     * @return O DTO preenchido com os dados aninhados.
-     */
+
     public static EmprestimoResponseDTO fromEntity(Emprestimo emprestimo) {
         return new EmprestimoResponseDTO(
                 emprestimo.getId(),
@@ -38,20 +32,12 @@ public record EmprestimoResponseDTO(
         );
     }
 
-    /**
-     * DTO interno e simplificado para representar o Usuário
-     * dentro do Empréstimo.
-     */
     public record UsuarioSimplificadoDTO(Long id, String nome, String email) {
         public static UsuarioSimplificadoDTO fromEntity(Usuario usuario) {
             return new UsuarioSimplificadoDTO(usuario.getId(), usuario.getNome(), usuario.getEmail());
         }
     }
 
-    /**
-     * DTO interno e simplificado para representar o Livro
-     * dentro do Empréstimo.
-     */
     public record LivroSimplificadoDTO(Long id, String titulo, String autor) {
         public static LivroSimplificadoDTO fromEntity(Livro livro) {
             return new LivroSimplificadoDTO(livro.getId(), livro.getTitulo(), livro.getAutor());

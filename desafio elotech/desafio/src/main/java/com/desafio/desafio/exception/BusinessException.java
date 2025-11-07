@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Exceção lançada quando uma operação viola uma regra de negócio.
  * Mapeia para o status HTTP 400 (Bad Request) por padrão.
- * Pode ser usado para validações lógicas que não são capturadas
- * pelo bean validation.
  */
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class BusinessException extends RuntimeException {

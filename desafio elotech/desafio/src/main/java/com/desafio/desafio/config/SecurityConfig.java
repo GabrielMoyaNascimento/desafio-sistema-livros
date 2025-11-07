@@ -14,16 +14,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // Lambda substituída
+                .csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 );
-
-        // Se quiser desativar o formulário de login padrão completamente:
-        // .formLogin(form -> form.disable())
-        // .httpBasic(basic -> basic.disable());
 
         return http.build();
     }

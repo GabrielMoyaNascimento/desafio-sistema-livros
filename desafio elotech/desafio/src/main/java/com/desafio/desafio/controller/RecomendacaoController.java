@@ -16,13 +16,6 @@ public class RecomendacaoController {
     @Autowired
     private RecomendacaoService recomendacaoService;
 
-    /**
-     * Endpoint para LER (buscar) recomendações de livros para um usuário.
-     * Responde a: GET /api/recomendacoes?usuarioId={id}
-     *
-     * @param usuarioId O ID do usuário (passado como parâmetro de query ?usuarioId=).
-     * @return Uma lista de Livros (em formato DTO) recomendados (Status 200 OK).
-     */
     @GetMapping
     public ResponseEntity<List<LivroResponseDTO>> getRecomendacoes(@RequestParam Long usuarioId) {
 

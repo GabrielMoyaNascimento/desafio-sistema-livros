@@ -20,15 +20,15 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 
     /**
      * Busca livros de uma categoria que o utilizador NÃO leu,
-     * já trazendo os empréstimos de cada livro (JOIN FETCH).
+     * já trazendo os empréstimos de cada livro.
      */
     @Query("SELECT DISTINCT l FROM Livro l LEFT JOIN FETCH l.emprestimos " +
             "WHERE l.categoria = :categoria AND l.id NOT IN :idsLivrosJaEmprestados")
     List<Livro> findByCategoriaAndIdNotInWithEmprestimos(String categoria, List<Long> idsLivrosJaEmprestados);
 
     /**
-     * Busca TODOS os livros de uma categoria (para utilizadores novos),
-     * já trazendo os empréstimos de cada livro (JOIN FETCH).
+     * Busca TODOS os livros de uma categoria (para usuários novos),
+     * já trazendo os empréstimos de cada livro.
      */
     @Query("SELECT DISTINCT l FROM Livro l LEFT JOIN FETCH l.emprestimos " +
             "WHERE l.categoria = :categoria")
